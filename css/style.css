@@ -1,0 +1,84 @@
+
+@font-face {
+    font-family: "Oswald-Light";
+    src: url("../font/Oswald-Light.otf");
+}
+
+@font-face {
+    font-family: "Andikat";
+    src: url("../font/AndBasR.ttf");
+}
+@font-face {
+    font-family: "Oswald-Regular";
+    src: url("../font/Oswald-Regular.otf");
+}
+@font-face {
+    font-family: "Oswald-Stencil";
+    src: url("../font/Oswald-Stencil.otf");
+}
+@font-face {
+    font-family: "banksia";
+    src: url("../font/banksia.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "1942";
+    src: url("../font/1942.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Kingthings_Calligraphica_Light";
+    src: url("../font/Kingthings_Calligraphica_Light.ttf");
+    font-weight: normal;
+}
+
+
+*{
+    margin:0;
+    padding:0;
+    font-family:"Andikat";
+}
+
+body{
+    font-size: 100%;
+    background: url('../image/bg.png');
+    
+}
+canvas{
+    border:2px solid #000;
+    box-shadow: 1px 4px 4px #111;
+    background-color: #ffffff;
+}
+h1 {
+
+    /*font-family:"banksia";*/	
+    font-size:22px;
+}
+
+h2 {
+
+    /*font-family:"Oswald-Regular";*/	
+    font-size:20px;
+}
+h5 {
+
+    /*font-family:"Oswald-Regular";*/	
+    font-size:18px;
+}
+
+p{
+    font-size:16px;
+    margin-bottom: 3px;
+}
+#master{
+    width:600px;
+    margin:10px auto;
+}
+
+.info{
+    margin-top:20px;
+}
+.info ul{
+    margin-left:20px;
+}
+.info ul li{}
