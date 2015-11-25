@@ -21,10 +21,10 @@ var radiano = function (grau) {
 }
 
 var ModificarPosicao = {
-    adicionarPosicao: function (bolinha, posicaoX, posicaoY, angulo) {
+    adicionarPosicao: function (pBolinha, posicaoX, posicaoY, angulo) {
 
-        bolinha.posicao = new Posicao(posicaoX, posicaoY, angulo);
-        return bolinha;
+        pBolinha.posicao = new Posicao(posicaoX, posicaoY, angulo);
+        return pBolinha;
     },
     calcularMovimentacaoBolinha: function (bolinha, passo) {
 
@@ -70,32 +70,56 @@ var VerificarColisao = {
         return bolinha;
     },
     alterarAnguloHorizontal: function (bolinha) {
-        // 2 1 1 2
-        // 4 3 3 4
+        // 2 1 - 1 2
+        // 4 3 - 3 4
+        var anguloBase = 90;
         var grau = bolinha.posicao.angulo;
+        var anguloGlobal = (parseInt(grau / anguloBase));
         var resultado = 0;
-        resultado = Math.abs(180 - grau);
-        if (grau > 180) {
-            resultado = Math.abs(360 - resultado);
+        var valorBase = Math.abs(anguloGlobal * anguloBase - grau)
+
+        switch (anguloGlobal) {
+            case 0:
+                resultado = (anguloBase * 1) + valorBase;
+                break;
+            case 1:
+                resultado = (anguloBase * 0) + valorBase;
+                break;
+            case 2:
+                resultado = (anguloBase * 3) + valorBase;
+                break;
+            case 3:
+                resultado = (anguloBase * 2) + valorBase;
+                break;
         }
+
         bolinha.posicao.angulo = resultado;
         return bolinha;
     },
     alterarAnguloVertical: function (bolinha) {
-        // 4 1 1 4 
-        // 3 2 2 3
+        // 4 1 - 1 4 
+        // 3 2 - 2 3
+        var anguloBase = 90;
         var grau = bolinha.posicao.angulo;
-        var anguloGlobal = (parseInt(grau / 90)+1)*90;
-        
+        var anguloGlobal = (parseInt(grau / anguloBase));
         var resultado = 0;
-        
-        resultado = Math.abs(anguloGlobal - grau);
-        
-        if (grau > 180) {
-            resultado = Math.abs(90 + resultado);
-        }else{
-            resultado = resultado + 180;
+        var valorBase = Math.abs(anguloGlobal * anguloBase - grau)
+
+        switch (anguloGlobal) {
+            case 0:
+                resultado = (anguloBase * 3) + valorBase;
+                break;
+            case 1:
+                resultado = (anguloBase * 2) + valorBase;
+                break;
+            case 2:
+                resultado = (anguloBase * 1) + valorBase;
+                break;
+            case 3:
+                resultado = (anguloBase * 0) + valorBase;
+                break;
         }
+
         bolinha.posicao.angulo = resultado;
         return bolinha;
     }

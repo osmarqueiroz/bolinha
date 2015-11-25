@@ -1,29 +1,48 @@
-var cobra = new Cobra();
-var comida = new Comida("Morango",1);
-var localizacao = new Localizacao(comida);
+var bolinhaAzul = new Bolinha();
+VerificarColisao.init(0, 0, 50, 30);
 
-QUnit.test("Cobra é objeto", function (assert) {
-    assert.ok(typeof cobra === "object", "Passou");
-    assert.ok(cobra.valor === 0, "Passou o valor base do array 0");
+QUnit.test("Bolinha é objeto sem posicao", function (assert) {
+    bolinhaAzul = new Bolinha();
+    assert.equal(typeof bolinhaAzul, "object", "Passou");
+    assert.equal(bolinhaAzul.posicao, null, "Posicao tem que ser nula");
 });
 
-QUnit.test("Tamanho Cobra igual a zero", function (assert) {
-    var tamanho = ManipularCobra.verificarTamanhoCobra(cobra);
-    assert.ok(tamanho === 0, "Passou");
+
+
+QUnit.test("Bolinha com posicao", function (assert) {
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 20, 30, 45);
+    assert.equal(typeof bolinhaAzul.posicao, "object", "Passou");
+    assert.equal(bolinhaAzul.posicao.posicaoX, 20, "posicao X 20");
+    assert.equal(bolinhaAzul.posicao.posicaoY, 30, "posicao Y 30");
+    assert.equal(bolinhaAzul.posicao.angulo, 45, "angulo 45");
 });
 
-QUnit.test("Comida é objeto", function (assert) {
-    assert.ok(typeof comida === "object", "Passou");
-    assert.ok(comida.nome === "Morango", "O nome é Morango");
-    assert.ok(comida.valor === 1, "O Valor é 1");
+
+
+QUnit.test("Tamanho da tela", function (assert) {
+    assert.equal(VerificarColisao.origemMinX, 0, "origem X = 0");
+    assert.equal(VerificarColisao.origemMinY, 0, "origem Y = 0");
+    assert.equal(VerificarColisao.origemMaxX, 50, "max X = 50");
+    assert.equal(VerificarColisao.origemMaxY, 30, "max Y = 30");
 });
 
-QUnit.test("Localizacao é objeto", function (assert) {
-    assert.ok(typeof localizacao === "object", "Passou");
+QUnit.test("Colisao na base da tela inversao de angulo 45 -> 315", function (assert) {
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 20, 30, 45);
+    assert.equal(bolinhaAzul.posicao.angulo, 45, "angulo 45");
+    bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
+    assert.equal(bolinhaAzul.posicao.angulo, 315, "angulo = 315");
 });
 
-QUnit.test("Tamanho Cobra igual a 1", function (assert) {
-    cobra = ManipularCobra.adicionarComida(cobra,comida);    
-    var tamanho = ManipularCobra.verificarTamanhoCobra(cobra);
-    assert.ok(tamanho === 1, "Passou");
+QUnit.test("Colisao na base da tela inversao de angulo 315 -> 45", function (assert) {
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 20, 30, 315);
+    assert.equal(bolinhaAzul.posicao.angulo, 315, "angulo 315");
+    bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
+    assert.equal(bolinhaAzul.posicao.angulo, 45, "angulo = 45");
+});
+
+QUnit.test("Colisao na base da tela inversao de angulo 45 -> 315", function (assert) {
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 20, 30, 45);
+    assert.equal(bolinhaAzul.posicao.angulo, 45, "angulo 45");
+    bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
+    assert.equal(bolinhaAzul.posicao.angulo, 315, "angulo = 315");
 });
