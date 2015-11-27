@@ -60,12 +60,12 @@ var VerificarColisao = {
         if ((posicaoX <= VerificarColisao.origemMinX || posicaoX >= VerificarColisao.origemMaxX) &&
                 (posicaoY >= VerificarColisao.origemMinY && posicaoY <= VerificarColisao.origemMaxY))
         {
-            return VerificarColisao.alterarAnguloHorizontal(bolinha);
+            return VerificarColisao.alterarAnguloVertical(bolinha);
         }
         if ((posicaoY <= VerificarColisao.origemMinY || posicaoY >= VerificarColisao.origemMaxY) &&
                 (posicaoX >= VerificarColisao.origemMinX && posicaoX <= VerificarColisao.origemMaxX))
         {
-            return VerificarColisao.alterarAnguloVertical(bolinha);
+            return VerificarColisao.alterarAnguloHorizontal(bolinha);
         }
         return bolinha;
     },
@@ -77,7 +77,8 @@ var VerificarColisao = {
         var anguloGlobal = (parseInt(grau / anguloBase));
         var resultado = 0;
         var valorBase = Math.abs(anguloGlobal * anguloBase - grau)
-
+console.log('alterarAnguloHorizontal');
+        console.log(anguloGlobal);
         switch (anguloGlobal) {
             case 0:
                 resultado = (anguloBase * 1) + valorBase;
@@ -104,7 +105,8 @@ var VerificarColisao = {
         var anguloGlobal = (parseInt(grau / anguloBase));
         var resultado = 0;
         var valorBase = Math.abs(anguloGlobal * anguloBase - grau)
-
+        console.log('alterarAnguloVertical');
+        console.log(anguloGlobal);
         switch (anguloGlobal) {
             case 0:
                 resultado = (anguloBase * 3) + valorBase;
