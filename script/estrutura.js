@@ -76,9 +76,7 @@ var VerificarColisao = {
         var grau = bolinha.posicao.angulo;
         var anguloGlobal = (parseInt(grau / anguloBase));
         var resultado = 0;
-        var valorBase = Math.abs(anguloGlobal * anguloBase - grau)
-console.log('alterarAnguloHorizontal');
-        console.log(anguloGlobal);
+        var valorBase = Math.abs(anguloGlobal * anguloBase - grau);
         switch (anguloGlobal) {
             case 0:
                 resultado = (anguloBase * 1) + valorBase;
@@ -104,8 +102,7 @@ console.log('alterarAnguloHorizontal');
         var grau = bolinha.posicao.angulo;
         var anguloGlobal = (parseInt(grau / anguloBase));
         var resultado = 0;
-        var valorBase = Math.abs(anguloGlobal * anguloBase - grau)
-        console.log('alterarAnguloVertical');
+        var valorBase = Math.abs(anguloGlobal * anguloBase - grau);
         console.log(anguloGlobal);
         switch (anguloGlobal) {
             case 0:
