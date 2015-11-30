@@ -12,7 +12,7 @@
             <h1>Bolinhas</h1>
             <h2>Criado usando JavaScript e Canvas(HTML5)</h2>
 
-            <canvas id="myCanvas" width="600" height="400"></canvas>            
+            <canvas id="myCanvas" width="500" height="1000"></canvas>            
             <div class="info">                
                 
             </div>
@@ -22,6 +22,31 @@
         <script type="text/javascript">
 
             window.onload = function () {
+                var canvas = document.getElementById('myCanvas');
+                var context = canvas.getContext('2d');
+    Estrutura.configurarTamanhoMapa(parseInt(canvas.width),parseInt(canvas.height))
+    Estrutura.definirPontoDisparo(parseInt(canvas.width)/2,parseInt(canvas.height)/2)
+
+               
+var contador = 0;
+ setInterval(function(){
+    contador++;
+if(contador % 10 ==0){
+      Estrutura.adicionarBolinha();
+}
+Estrutura.processarBolinha();
+var bolinhas = Estrutura.buscarLista();
+                var tamanho = bolinhas.length;
+                context.clearRect(0,0,parseInt(canvas.width),parseInt(canvas.height));
+        for(var i =0;i<tamanho;i++){
+                    context.beginPath();
+                      context.arc(bolinhas[i].posicao.posicaoX, bolinhas[i].posicao.posicaoY, 5, 0, 2 * Math.PI, false);
+                      context.fillStyle = bolinhas[i].cor;
+                      context.fill();
+
+        }
+                     
+                },10)
 
             }
 

@@ -1,7 +1,50 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+var Estrutura = {
+   bolinhas:[],
+   tamanhoLista:0,
+   origemDisparoX:0,
+   origemDisparoY:0,
+   configurarTamanhoMapa:function(largura,altura){
+   		VerificarColisao.init(0,0,largura,altura);
+   },
+   definirPontoDisparo:function(posicaoX,posicaoY){
+   		Estrutura.origemDisparoX = posicaoX;
+   		Estrutura.origemDisparoY = posicaoY;
+   },
+   definirAngulo:function(){
+   	max=180;
+   	 min = 1;
+  return Math.floor(Math.random() * (max - min)) + min;
 
 
+   },
+     definirAnguloCor:function(){
+   
+  return Estrutura.tamanhoLista;
+
+
+   },
+   adicionarBolinha:function(){
+
+	var bolinha = new Bolinha('hsl('+Estrutura.definirAnguloCor()+',100%,50%)');
+	var angulo = Estrutura.definirAnguloCor();
+	
+		Estrutura.bolinhas[Estrutura.tamanhoLista] = ModificarPosicao.adicionarPosicao(bolinha,Estrutura.origemDisparoX,Estrutura.origemDisparoY,angulo);
+	
+   	Estrutura.tamanhoLista++;
+
+   },
+   processarBolinha:function(){
+   		var tamanho = Estrutura.bolinhas.length;
+
+   		for(var i =0;i<tamanho;i++){
+   			Estrutura.bolinhas[i] = ModificarPosicao.calcularMovimentacaoBolinha(Estrutura.bolinhas[i],Estrutura.passo);
+   			Estrutura.bolinhas[i] = VerificarColisao.cenario(Estrutura.bolinhas[i]);
+   		}
+   },
+   buscarLista:function(){
+   	return Estrutura.bolinhas;
+   }
+
+
+}
