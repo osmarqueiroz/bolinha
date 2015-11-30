@@ -1,4 +1,3 @@
-
 var Estrutura = {
    bolinhas:[],
    tamanhoLista:0,

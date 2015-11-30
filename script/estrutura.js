@@ -109,7 +109,7 @@ var VerificarColisao = {
         var anguloGlobal = (parseInt(grau / anguloBase))+1;
         var resultado = 0;
         var valorBase = Math.abs(anguloGlobal * anguloBase - grau);
-       // console.log(anguloGlobal);
+
         switch (anguloGlobal) {
             case 1:
                 resultado = (anguloBase * 3) + valorBase;
