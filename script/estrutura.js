@@ -21,7 +21,7 @@ var radiano = function (grau) {
 }
 
 var ModificarPosicao = {
-    passo : 2,
+    passo: 2,
     adicionarPosicao: function (pBolinha, posicaoX, posicaoY, angulo) {
 
         pBolinha.posicao = new Posicao(posicaoX, posicaoY, angulo);
@@ -58,20 +58,20 @@ var VerificarColisao = {
     cenario: function (bolinha) {
         var posicaoX = bolinha.posicao.posicaoX;
         var posicaoY = bolinha.posicao.posicaoY;
-       // console.log(bolinha.posicao.angulo)
+        // console.log(bolinha.posicao.angulo)
         if ((posicaoX <= VerificarColisao.origemMinX || posicaoX >= VerificarColisao.origemMaxX) &&
                 (posicaoY >= VerificarColisao.origemMinY && posicaoY <= VerificarColisao.origemMaxY))
         {
-           // console.log('Horizontal')
             bolinha = VerificarColisao.alterarAnguloHorizontal(bolinha);
             return ModificarPosicao.calcularMovimentacaoBolinha(bolinha);
-        }
-        if ((posicaoY <= VerificarColisao.origemMinY || posicaoY >= VerificarColisao.origemMaxY) &&
+        } else if ((posicaoY <= VerificarColisao.origemMinY || posicaoY >= VerificarColisao.origemMaxY) &&
                 (posicaoX >= VerificarColisao.origemMinX && posicaoX <= VerificarColisao.origemMaxX))
         {
-          //  console.log('Vertical')
-            bolinha =  VerificarColisao.alterarAnguloVertical(bolinha);
+            bolinha = VerificarColisao.alterarAnguloVertical(bolinha);
             return ModificarPosicao.calcularMovimentacaoBolinha(bolinha);
+        } else if ((posicaoY <= VerificarColisao.origemMinY || posicaoY >= VerificarColisao.origemMaxY) &&
+                (posicaoX <= VerificarColisao.origemMinX || posicaoX >= VerificarColisao.origemMaxX)) {
+            console.log("Diagonal")
         }
         return bolinha;
     },
@@ -80,7 +80,7 @@ var VerificarColisao = {
         // 4 3 - 3 4
         var anguloBase = 90;
         var grau = bolinha.posicao.angulo;
-        var anguloGlobal = (parseInt(grau / anguloBase))+1;
+        var anguloGlobal = (parseInt(grau / anguloBase)) + 1;
         var resultado = 0;
         var valorBase = Math.abs(anguloGlobal * anguloBase - grau);
         switch (anguloGlobal) {
@@ -106,7 +106,7 @@ var VerificarColisao = {
         // 3 2 - 2 3
         var anguloBase = 90;
         var grau = bolinha.posicao.angulo;
-        var anguloGlobal = (parseInt(grau / anguloBase))+1;
+        var anguloGlobal = (parseInt(grau / anguloBase)) + 1;
         var resultado = 0;
         var valorBase = Math.abs(anguloGlobal * anguloBase - grau);
 

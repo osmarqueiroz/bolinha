@@ -11,42 +11,59 @@
         <div id="master">
             <h1>Bolinhas</h1>
             <h2>Criado usando JavaScript e Canvas(HTML5)</h2>
-
-            <canvas id="myCanvas" width="500" height="1000"></canvas>            
+            <p>Frames:<span id="fps"></span></p>
+            <p>Bolinhas:<span id="bolinhas"></span></p>
+            <canvas id="myCanvas" width="500" height="500"></canvas>            
             <div class="info">                
-                
+
             </div>
         </div>
         <script src="script/estrutura.js"></script>
         <script src="script/init.js"></script>
         <script type="text/javascript">
-
+            window.requestAnimFrame = (function (callback) {
+                return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+                        function (callback) {
+                            window.setTimeout(callback, 1000 / 60);
+                        };
+            })();
             window.onload = function () {
                 var canvas = document.getElementById('myCanvas');
                 var context = canvas.getContext('2d');
-    Estrutura.configurarTamanhoMapa(parseInt(canvas.width),parseInt(canvas.height))
-    Estrutura.definirPontoDisparo(parseInt(canvas.width)/2,parseInt(canvas.height)/2)
+                Estrutura.configurarTamanhoMapa(parseInt(canvas.width), parseInt(canvas.height))
+                Estrutura.definirPontoDisparo(parseInt(canvas.width)/2, 0)
+                Estrutura.definirAnguloDisparo(25, 60)
 
-               
-var contador = 0;
- setInterval(function(){
-    contador++;
-if(contador % 10 ==0){
-      Estrutura.adicionarBolinha();
-}
-Estrutura.processarBolinha();
-var bolinhas = Estrutura.buscarLista();
-                var tamanho = bolinhas.length;
-                context.clearRect(0,0,parseInt(canvas.width),parseInt(canvas.height));
-        for(var i =0;i<tamanho;i++){
-                    context.beginPath();
-                      context.arc(bolinhas[i].posicao.posicaoX, bolinhas[i].posicao.posicaoY, 5, 0, 2 * Math.PI, false);
-                      context.fillStyle = bolinhas[i].cor;
-                      context.fill();
+                var start = null;
+                
+                var gerenciadorAnimacao = function (timestamp) {
+//                    if(start == null){
+//                        start = timestamp;
+//                    }else{
+//                        document.getElementById("fps").innerHTML = parseInt(timestamp - start);
+                        document.getElementById("bolinhas").innerHTML = Estrutura.buscarTotalBolinhas();
+//                        start = timestamp;
+//                    }
 
-        }
-                     
-                },10)
+                    if (Estrutura.buscarTotalBolinhas() < 600) {
+                        Estrutura.adicionarBolinha();
+                    }
+                    Estrutura.processarBolinha();
+                    var bolinhas = Estrutura.buscarLista();
+                    var tamanho = bolinhas.length;
+                    context.clearRect(0, 0, parseInt(canvas.width), parseInt(canvas.height));
+                    for (var i = 0; i < tamanho; i++) {
+                        context.beginPath();
+                        context.arc(bolinhas[i].posicao.posicaoX, bolinhas[i].posicao.posicaoY, 5, 0, 2 * Math.PI, false);
+                        context.fillStyle = bolinhas[i].cor;
+                        context.fill();
+
+                    }
+
+                    window.requestAnimationFrame(gerenciadorAnimacao);
+//                    }
+                }
+                window.requestAnimationFrame(gerenciadorAnimacao);
 
             }
 

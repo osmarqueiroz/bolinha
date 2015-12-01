@@ -34,7 +34,7 @@ QUnit.test("Colisao na base da tela inversao de angulo 45 -> 315", function (ass
 });
 
 QUnit.test("Colisao na base da tela inversao de angulo 315 -> 45", function (assert) {
-    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul,  50, 15, 315);
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 50, 15, 315);
     assert.equal(bolinhaAzul.posicao.angulo, 315, "angulo 315");
     bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
     assert.equal(bolinhaAzul.posicao.angulo, 45, "angulo = 45");
@@ -55,7 +55,7 @@ QUnit.test("Colisao na base da tela inversao de angulo 135 -> 45", function (ass
 
 
 QUnit.test("Colisao na base da tela inversao de angulo 225 -> 135", function (assert) {
-    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul,0, 15, 225);
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 0, 15, 225);
     assert.equal(bolinhaAzul.posicao.angulo, 225, "angulo = 225");
     bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
     assert.equal(bolinhaAzul.posicao.angulo, 135, "angulo = 135");
@@ -70,13 +70,13 @@ QUnit.test("Colisao na base da tela inversao de angulo 135 -> 225", function (as
 
 
 QUnit.test("Colisao na base da tela inversao de angulo 225 -> 315", function (assert) {
-    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul,15, 30, 225);
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 15, 30, 225);
     assert.equal(bolinhaAzul.posicao.angulo, 225, "angulo = 225");
     bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
     assert.equal(bolinhaAzul.posicao.angulo, 315, "angulo = 315");
 });
 QUnit.test("Colisao na base da tela inversao de angulo 315 -> 225", function (assert) {
-    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul,15, 30, 315);
+    bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 15, 30, 315);
     assert.equal(bolinhaAzul.posicao.angulo, 315, "angulo = 315");
     bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
     assert.equal(bolinhaAzul.posicao.angulo, 225, "angulo = 225");
