@@ -25,7 +25,7 @@ var Estrutura = {
     },
     definirAnguloCor: function () {
 
-        return Estrutura.tamanhoLista * 5;
+        return Estrutura.tamanhoLista;
 
 
     },

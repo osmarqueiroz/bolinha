@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Jogo da Cobrinha</title>
+        <title>Bolinhas saltitando</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link  href="css/style.css" media="all" rel="stylesheet" />
@@ -10,10 +10,9 @@
     <body>
         <div id="master">
             <h1>Bolinhas</h1>
-            <h2>Criado usando JavaScript e Canvas(HTML5)</h2>
-            <p>Frames:<span id="fps"></span></p>
+            <h2>JavaScript e Canvas(HTML5)</h2>
             <p>Bolinhas:<span id="bolinhas"></span></p>
-            <canvas id="myCanvas" width="500" height="500"></canvas>            
+            <canvas id="myCanvas" width="650" height="400"></canvas>            
             <div class="info">                
 
             </div>
@@ -27,25 +26,21 @@
                             window.setTimeout(callback, 1000 / 60);
                         };
             })();
+            var canvas = null
             window.onload = function () {
-                var canvas = document.getElementById('myCanvas');
+                canvas = document.getElementById('myCanvas');
                 var context = canvas.getContext('2d');
+//                console.log(canvas)
                 Estrutura.configurarTamanhoMapa(parseInt(canvas.width), parseInt(canvas.height))
-                Estrutura.definirPontoDisparo(parseInt(canvas.width)/2, 0)
-                Estrutura.definirAnguloDisparo(25, 60)
+                Estrutura.definirPontoDisparo(parseInt(canvas.width) / 2, 0)
+                Estrutura.definirAnguloDisparo(10, 170)
 
                 var start = null;
-                
-                var gerenciadorAnimacao = function (timestamp) {
-//                    if(start == null){
-//                        start = timestamp;
-//                    }else{
-//                        document.getElementById("fps").innerHTML = parseInt(timestamp - start);
-                        document.getElementById("bolinhas").innerHTML = Estrutura.buscarTotalBolinhas();
-//                        start = timestamp;
-//                    }
 
-                    if (Estrutura.buscarTotalBolinhas() < 600) {
+                var gerenciadorAnimacao = function (timestamp) {
+
+
+                    if (Estrutura.buscarTotalBolinhas() < 500) {
                         Estrutura.adicionarBolinha();
                     }
                     Estrutura.processarBolinha();
@@ -59,9 +54,9 @@
                         context.fill();
 
                     }
+                    document.getElementById("bolinhas").innerHTML = Estrutura.buscarTotalBolinhas();
 
                     window.requestAnimationFrame(gerenciadorAnimacao);
-//                    }
                 }
                 window.requestAnimationFrame(gerenciadorAnimacao);
 

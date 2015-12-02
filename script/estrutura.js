@@ -58,8 +58,13 @@ var VerificarColisao = {
     cenario: function (bolinha) {
         var posicaoX = bolinha.posicao.posicaoX;
         var posicaoY = bolinha.posicao.posicaoY;
-        // console.log(bolinha.posicao.angulo)
-        if ((posicaoX <= VerificarColisao.origemMinX || posicaoX >= VerificarColisao.origemMaxX) &&
+        if ((posicaoY <= VerificarColisao.origemMinY || posicaoY >= VerificarColisao.origemMaxY) &&
+                (posicaoX <= VerificarColisao.origemMinX || posicaoX >= VerificarColisao.origemMaxX)) {
+             bolinha = VerificarColisao.alterarAnguloHorizontal(bolinha);
+             bolinha = VerificarColisao.alterarAnguloVertical(bolinha);
+            return ModificarPosicao.calcularMovimentacaoBolinha(bolinha);
+
+        }else if ((posicaoX <= VerificarColisao.origemMinX || posicaoX >= VerificarColisao.origemMaxX) &&
                 (posicaoY >= VerificarColisao.origemMinY && posicaoY <= VerificarColisao.origemMaxY))
         {
             bolinha = VerificarColisao.alterarAnguloHorizontal(bolinha);
@@ -69,9 +74,6 @@ var VerificarColisao = {
         {
             bolinha = VerificarColisao.alterarAnguloVertical(bolinha);
             return ModificarPosicao.calcularMovimentacaoBolinha(bolinha);
-        } else if ((posicaoY <= VerificarColisao.origemMinY || posicaoY >= VerificarColisao.origemMaxY) &&
-                (posicaoX <= VerificarColisao.origemMinX || posicaoX >= VerificarColisao.origemMaxX)) {
-            console.log("Diagonal")
         }
         return bolinha;
     },
