@@ -53,6 +53,38 @@ var Estrutura = {
     buscarTotalBolinhas: function () {
         return Estrutura.tamanhoLista;
     }
+}
 
+var Processamento = {
+  canvas:null,
+  context:null,
+  totalBolinha:0,
+  definicaoInicial:function(canvas,totalBolinha){
+    Processamento.canvas = canvas;
+    Processamento.totalBolinha = totalBolinha;
+    Processamento.context = canvas.getContext('2d');
+    Estrutura.configurarTamanhoMapa(parseInt(canvas.width), parseInt(canvas.height));
+    Estrutura.definirPontoDisparo(parseInt(canvas.width) / 2, 0);
+    Estrutura.definirAnguloDisparo(10, 170);
+  },
+  limparTela:function(){
+    Processamento.context.clearRect(0, 0, parseInt(Processamento.canvas.width), parseInt(Processamento.canvas.height));
+  },
+  gerenciarAnimacao : function(){
+    if (Estrutura.buscarTotalBolinhas() < Processamento.totalBolinha) {
+        Estrutura.adicionarBolinha();
+    }
+    Estrutura.processarBolinha();
+    var bolinhas = Estrutura.buscarLista();
+    var total = bolinhas.length;
+    Processamento.limparTela();
+    for (var i = 0; i < total; i++) {
+        Processamento.context.beginPath();
+        Processamento.context.arc(bolinhas[i].posicao.posicaoX, bolinhas[i].posicao.posicaoY, 5, 0, 2 * Math.PI, false);
+        Processamento.context.fillStyle = bolinhas[i].cor;
+        Processamento.context.fill();
 
+    }
+
+  }
 }

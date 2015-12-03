@@ -12,50 +12,27 @@
             <h1>Bolinhas</h1>
             <h2>JavaScript e Canvas(HTML5)</h2>
             <p>Bolinhas:<span id="bolinhas"></span></p>
-            <canvas id="myCanvas" width="650" height="400"></canvas>            
-            <div class="info">                
+            <canvas id="myCanvas" width="650" height="400"></canvas>
+            <div class="info">
 
             </div>
         </div>
         <script src="script/estrutura.js"></script>
         <script src="script/init.js"></script>
         <script type="text/javascript">
+
             window.requestAnimFrame = (function (callback) {
                 return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
                         function (callback) {
                             window.setTimeout(callback, 1000 / 60);
                         };
             })();
-            var canvas = null
+
+
             window.onload = function () {
-                canvas = document.getElementById('myCanvas');
-                var context = canvas.getContext('2d');
-//                console.log(canvas)
-                Estrutura.configurarTamanhoMapa(parseInt(canvas.width), parseInt(canvas.height))
-                Estrutura.definirPontoDisparo(parseInt(canvas.width) / 2, 0)
-                Estrutura.definirAnguloDisparo(10, 170)
-
-                var start = null;
-
+                Processamento.definicaoInicial(document.getElementById('myCanvas'),200);
                 var gerenciadorAnimacao = function (timestamp) {
-
-
-                    if (Estrutura.buscarTotalBolinhas() < 500) {
-                        Estrutura.adicionarBolinha();
-                    }
-                    Estrutura.processarBolinha();
-                    var bolinhas = Estrutura.buscarLista();
-                    var tamanho = bolinhas.length;
-                    context.clearRect(0, 0, parseInt(canvas.width), parseInt(canvas.height));
-                    for (var i = 0; i < tamanho; i++) {
-                        context.beginPath();
-                        context.arc(bolinhas[i].posicao.posicaoX, bolinhas[i].posicao.posicaoY, 5, 0, 2 * Math.PI, false);
-                        context.fillStyle = bolinhas[i].cor;
-                        context.fill();
-
-                    }
-                    document.getElementById("bolinhas").innerHTML = Estrutura.buscarTotalBolinhas();
-
+                    Processamento.gerenciarAnimacao();
                     window.requestAnimationFrame(gerenciadorAnimacao);
                 }
                 window.requestAnimationFrame(gerenciadorAnimacao);

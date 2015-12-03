@@ -1,6 +1,17 @@
 var bolinhaAzul = new Bolinha();
 VerificarColisao.init(0, 0, 50, 30);
 
+
+
+
+QUnit.test("Bolinha é objeto sem posicao", function (assert) {
+    bolinhaAzul = new Bolinha();
+    assert.equal(typeof bolinhaAzul, "object", "Passou");
+    assert.equal(bolinhaAzul.posicao, null, "Posicao tem que ser nula");
+});
+
+
+
 QUnit.test("Bolinha é objeto sem posicao", function (assert) {
     bolinhaAzul = new Bolinha();
     assert.equal(typeof bolinhaAzul, "object", "Passou");
@@ -67,7 +78,6 @@ QUnit.test("Colisao na base da tela inversao de angulo 315 -> 225", function (as
     bolinhaAzul = VerificarColisao.cenario(bolinhaAzul);
     assert.equal(bolinhaAzul.posicao.angulo, 225, "angulo = 225");
 });
-
 
 QUnit.test("Colisao na base da tela inversao de angulo 225 -> 135", function (assert) {
     bolinhaAzul = ModificarPosicao.adicionarPosicao(bolinhaAzul, 15, 30, 225);
